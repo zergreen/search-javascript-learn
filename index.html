@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Example</title>
+</head>
+<body>
+    <input type="text" id="searchInput" placeholder="Enter your search query">
+    <button id="searchButton">Search</button>
+    <div id="searchResults"></div>
+
+    <script>
+        // Sample data for searching (replace with your own data)
+        const data = [
+            "Apple",
+            "Banana",
+            "Cherry",
+            "Date",
+            "Elderberry",
+            "Fig",
+            "Grapes",
+            "Honeydew",
+            "Kiwi",
+            "Lemon"
+        ];
+
+        // Function to perform the search
+        function performSearch(query) {
+            const results = data.filter(item => item.toLowerCase().includes(query.toLowerCase()));
+            return results;
+        }
+
+        // Function to display search results
+        function displayResults(results) {
+            const searchResults = document.getElementById("searchResults");
+            searchResults.innerHTML = "";
+
+            if (results.length === 0) {
+                searchResults.innerHTML = "No results found.";
+            } else {
+                results.forEach(result => {
+                    const resultItem = document.createElement("div");
+                    resultItem.textContent = result;
+                    searchResults.appendChild(resultItem);
+                });
+            }
+        }
+
+        // Event listener for the search button
+        document.getElementById("searchButton").addEventListener("click", () => {
+            const query = document.getElementById("searchInput").value;
+            const searchResults = performSearch(query);
+            displayResults(searchResults);
+        });
+    </script>
+</body>
+</html>
